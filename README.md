@@ -83,6 +83,6 @@ Responsive design
 #    Sairaj
 #    Roshan
 #    Tejas
-#    Rushabh
+#    Rishabh
 
 HackHorizon aims to provide a centralized, secure, and efficient platform for conducting hackathons. By automating registration, team management, submission handling, judging, and result publication, the system enhances the overall hackathon experience for organizers, judges, and participants.
