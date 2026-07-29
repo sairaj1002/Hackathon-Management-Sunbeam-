@@ -9,7 +9,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   /*
    * Restore Session
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
       localStorage.removeItem(STORAGE_KEYS.AUTH);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, []);
 
@@ -95,12 +95,12 @@ export const AuthProvider = ({ children }) => {
     () => ({
       user,
       token,
-      loading,
+      isLoading,
       isAuthenticated: !!token,
       login,
       logout,
     }),
-    [user, token, loading]
+    [user, token, isLoading]
   );
 
   return (

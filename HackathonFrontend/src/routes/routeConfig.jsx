@@ -16,7 +16,6 @@ import DashboardPage from "../features/dashboard/pages/DashboardPage";
 import HackathonListPage from "../features/hackathon/pages/HackathonListPage";
 import TeamPage from "../features/team/pages/TeamPage";
 import SubmissionPage from "../features/submission/pages/SubmissionPage";
-import JudgePage from "../features/judge/pages/JudgeDashboardPage";
 import LeaderboardPage from "../features/leaderboard/pages/LeaderboardPage";
 import ProfilePage from "../features/profile/pages/ProfilePage";
 import UserManagementPage from "../features/admin/pages/UserManagementPage";

@@ -54,7 +54,7 @@ const LoginForm = () => {
       // Navigate according to role
       switch (user.role) {
         case "ADMIN":
-          navigate(ROUTES.ADMIN_DASHBOARD || ROUTES.DASHBOARD);
+          navigate(ROUTES.DASHBOARD);
           break;
 
         case "ORGANIZER":

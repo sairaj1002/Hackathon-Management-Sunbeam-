@@ -7,8 +7,6 @@ import Input from "../../../components/ui/Input";
 
 import ROUTES from "../../../constants/routes";
 
-import { currentUser } from "../../../mock/auth";
-
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
     fullName: "",
