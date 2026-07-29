@@ -1,0 +1,1 @@
+export const certificates=[{id:1,title:"Hackathon Winner",hackathon:"AI Innovation Challenge",issueDate:"2026-08-15",certificateUrl:"#"}];

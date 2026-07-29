@@ -1,0 +1,1 @@
+export const leaderboardData=[{id:1,rank:1,teamName:"Code Warriors",score:97},{id:2,rank:2,teamName:"Bug Hunters",score:93}];

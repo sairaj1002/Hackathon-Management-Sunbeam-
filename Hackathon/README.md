@@ -1,32 +1,156 @@
-<!-- # React + Vite
+src/
+│
+├── routes/
+│   ├── AppRoutes.jsx
+│   ├── ProtectedRoute.jsx
+│   ├── PublicRoute.jsx
+│   ├── RoleRoute.jsx
+│   └── index.jsx
+│
+├── features/
+│   ├── auth/
+│   │   ├── LoginPage.jsx
+│   │   ├── RegisterPage.jsx
+│   │   └── ForgotPasswordPage.jsx
+│   │
+│   ├── dashboard/
+│   │   └── DashboardPage.jsx
+│   │
+│   ├── hackathon/
+│   │   ├── HackathonListPage.jsx
+│   │   ├── HackathonDetailsPage.jsx
+│   │   ├── CreateHackathonPage.jsx
+│   │   ├── EditHackathonPage.jsx
+│   │   └── MyHackathonsPage.jsx
+│   │
+│   ├── team/
+│   │   ├── TeamListPage.jsx
+│   │   ├── TeamDetailsPage.jsx
+│   │   ├── CreateTeamPage.jsx
+│   │   └── EditTeamPage.jsx
+│   │
+│   ├── submission/
+│   │   ├── SubmissionPage.jsx
+│   │   ├── CreateSubmissionPage.jsx
+│   │   └── EditSubmissionPage.jsx
+│   │
+│   ├── judge/
+│   │   ├── JudgeDashboardPage.jsx
+│   │   ├── AssignedProjectsPage.jsx
+│   │   └── ScoreProjectPage.jsx
+│   │
+│   ├── leaderboard/
+│   │   └── LeaderboardPage.jsx
+│   │
+│   ├── profile/
+│   │   ├── ProfilePage.jsx
+│   │   └── EditProfilePage.jsx
+│   │
+│   ├── admin/
+│   │   ├── UserManagementPage.jsx
+│   │   └── RoleManagementPage.jsx
+│   │
+│   └── common/
+│       ├── NotFoundPage.jsx
+│       ├── UnauthorizedPage.jsx
+│       └── ComingSoonPage.jsx
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
--->
 
 
 
-## Installations
-1. react-router-dom
 
-## Done Till now
-1. over all structure is ready for frontend pages
-2. with each pages routes
 
-## Todo
-0. installing dependencies(UseNavigation , toaster , tailwind.css and components )
-1. finalizing the layout
-2. structre of pages
-3. Designing 
+
+
+
+
+
+
+
+# Complete Route Map
+
+### Public Routes
+| URL                | Page            | Access |
+| ------------------ | --------------- | ------ |
+| `/`                | Login           | Public |
+| `/login`           | Login           | Public |
+| `/register`        | Register        | Public |
+| `/forgot-password` | Forgot Password | Public |
+
+### Protected Routes
+
+Dashboard
+| URL          | Page      |
+| ------------ | --------- |
+| `/dashboard` | Dashboard |
+
+Profile
+| URL             | Page         |
+| --------------- | ------------ |
+| `/profile`      | Profile      |
+| `/profile/edit` | Edit Profile |
+
+Hackathons
+| URL                    | Page          |
+| ---------------------- | ------------- |
+| `/hackathons`          | List          |
+| `/hackathons/:id`      | Details       |
+| `/hackathons/create`   | Create        |
+| `/hackathons/edit/:id` | Edit          |
+| `/hackathons/my`       | My Hackathons |
+
+Teams
+| URL               | Page         |
+| ----------------- | ------------ |
+| `/teams`          | Team List    |
+| `/teams/:id`      | Team Details |
+| `/teams/create`   | Create Team  |
+| `/teams/edit/:id` | Edit Team    |
+
+Submission
+| URL                           | Page            |
+| ----------------------------- | --------------- |
+| `/submissions`                | Submission List |
+| `/submissions/create/:teamId` | Submit Project  |
+| `/submissions/edit/:id`       | Edit Submission |
+
+Judge
+| URL                          | Page              |
+| ---------------------------- | ----------------- |
+| `/judge`                     | Dashboard         |
+| `/judge/projects`            | Assigned Projects |
+| `/judge/score/:submissionId` | Score Project     |
+
+Results
+| URL            | Page        |
+| -------------- | ----------- |
+| `/leaderboard` | Leaderboard |
+
+Admin
+| URL            | Page            |
+| -------------- | --------------- |
+| `/admin/users` | User Management |
+| `/admin/roles` | Role Management |
+
+Error Pages
+| URL    | Page         |
+| ------ | ------------ |
+| `/403` | Unauthorized |
+| `*`    | Not Found    |
+
+This separation is common in production React applications, makes testing easier, and is a great architectural point to discuss during interviews. From there, we'll be ready to build the authentication flow and connect the frontend cleanly to your Spring Boot backend.
+src/
+├── services/
+│   ├── authService.js
+│   ├── hackathonService.js
+│   ├── teamService.js
+│   ├── submissionService.js
+│   └── judgeService.js
+│
+├── api/
+│   ├── axios.js
+│   └── interceptors.js
+
+api/ configures Axios (base URL, JWT interceptor, response interceptor).
+services/ contains domain-specific API calls (login, getHackathons, createTeam, etc.).
+Components never call Axios directly.

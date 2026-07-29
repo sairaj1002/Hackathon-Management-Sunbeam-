@@ -1,0 +1,24 @@
+const ROLES = {
+  ADMIN: "ADMIN",
+
+  ORGANIZER: "ORGANIZER",
+
+  JUDGE: "JUDGE",
+
+  PARTICIPANT: "PARTICIPANT",
+};
+
+export const ALL_ROLES = [
+  ROLES.ADMIN,
+  ROLES.ORGANIZER,
+  ROLES.JUDGE,
+  ROLES.PARTICIPANT,
+];
+
+export const STAFF_ROLES = [
+  ROLES.ADMIN,
+  ROLES.ORGANIZER,
+  ROLES.JUDGE,
+];
+
+export default ROLES;

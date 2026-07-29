@@ -1,0 +1,1 @@
+export const currentUser={id:1,fullName:"John Doe",email:"john@example.com",role:"PARTICIPANT",avatar:"",token:"jwt-token"};

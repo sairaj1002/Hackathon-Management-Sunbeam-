@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background-color: rgb(249 250 251);
+  color: rgb(24 24 27);
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background-color: rgb(9 9 11);
+  color: rgb(244 244 245);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(228 228 231);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(161 161 170);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(113 113 122);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgb(39 39 42);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(82 82 91);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(113 113 122);
+}
+
+::selection {
+  background-color: rgb(59 130 246);
+  color: white;
+}

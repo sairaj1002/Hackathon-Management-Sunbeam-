@@ -1,0 +1,1 @@
+export const users=[{id:1,fullName:"John Doe",email:"john@example.com",role:"PARTICIPANT",status:"ACTIVE"},{id:2,fullName:"Jane Smith",email:"jane@example.com",role:"JUDGE",status:"ACTIVE"}];

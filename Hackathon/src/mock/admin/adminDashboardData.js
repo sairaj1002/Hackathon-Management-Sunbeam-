@@ -1,0 +1,1 @@
+export const adminDashboard={stats:{users:540,hackathons:28,teams:96,submissions:88,pendingEvaluations:14},recentActivities:[{id:1,action:"New user registered",time:"5 min ago"}]};

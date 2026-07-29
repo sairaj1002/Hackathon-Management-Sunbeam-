@@ -1,0 +1,1 @@
+export const submissions=[{id:1,projectTitle:"Smart Health",status:"UNDER_REVIEW",githubUrl:"https://github.com/demo",demoUrl:"https://demo.com"}];

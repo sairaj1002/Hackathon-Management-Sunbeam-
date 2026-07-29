@@ -1,0 +1,1 @@
+export const evaluations=[{id:1,project:"Smart Health",judge:"Dr. Sharma",score:92,status:"COMPLETED"}];

@@ -1,0 +1,1 @@
+export const notifications=[{id:1,title:"Submission Approved",message:"Your project has been approved.",read:false,date:"Today"}];
