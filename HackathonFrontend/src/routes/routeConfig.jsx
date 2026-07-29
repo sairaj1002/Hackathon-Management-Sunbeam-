@@ -19,6 +19,7 @@ import SubmissionPage from "../features/submission/pages/SubmissionPage";
 import LeaderboardPage from "../features/leaderboard/pages/LeaderboardPage";
 import ProfilePage from "../features/profile/pages/ProfilePage";
 import UserManagementPage from "../features/admin/pages/UserManagementPage";
+import RoleManagementPage from "../features/admin/pages/RoleManagementPage";
 import JudgeDashboardPage from "../features/judge/pages/JudgeDashboardPage";
 
 const ALL_USERS = [
@@ -143,6 +144,16 @@ const routeConfig = [
     roles: [
       ROLES.ADMIN,
     ],
+  },
+  {
+    title: "Roles",
+    path: ROUTES.ADMIN_ROLES,
+    element: <RoleManagementPage />,
+    icon: Shield,
+    protected: true,
+    layout: true,
+    showInSidebar: true,
+    roles: [ROLES.ADMIN],
   },
 ];
 

@@ -14,6 +14,9 @@ import Button from "../../../components/ui/Button";
 import Card from "../../../components/ui/Card";
 
 import { hackathons } from "../../../mock/hackathons";
+import useAuth from "../../../hooks/useAuth";
+import ROLES from "../../../constants/roles";
+import ROUTES from "../../../constants/routes";
 
 const STATUS_VARIANTS = {
   OPEN: "success",
@@ -31,6 +34,7 @@ const STATUS_LABELS = {
 
 const HackathonDetailsPage = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { id } = useParams();
 
   const hackathon = useMemo(
@@ -157,29 +161,31 @@ const HackathonDetailsPage = () => {
 
       {/* Actions */}
 
+      {[ROLES.ADMIN, ROLES.ORGANIZER].includes(user?.role) && (
       <Card className="p-6">
         <h2 className="mb-6 text-lg font-semibold">
           Organizer Actions
         </h2>
 
         <div className="flex flex-wrap gap-4">
-          <Button>
+          <Button onClick={() => navigate(ROUTES.EDIT_HACKATHON.replace(":id", id))}>
             Edit Hackathon
           </Button>
 
-          <Button variant="outline">
+          <Button variant="outline" onClick={() => navigate(ROUTES.COMING_SOON)}>
             Manage Teams
           </Button>
 
-          <Button variant="outline">
+          <Button variant="outline" onClick={() => navigate(ROUTES.COMING_SOON)}>
             View Submissions
           </Button>
 
-          <Button variant="outline">
+          <Button variant="outline" onClick={() => navigate(ROUTES.COMING_SOON)}>
             View Evaluations
           </Button>
         </div>
       </Card>
+      )}
     </div>
   );
 };

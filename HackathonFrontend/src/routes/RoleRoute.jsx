@@ -1,10 +1,14 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 import useAuth from "../hooks/useAuth";
 import ROUTES from "../constants/routes";
 
-const RoleRoute = ({ children, allowedRoles = [] }) => {
-  const { user } = useAuth();
+const RoleRoute = ({ allowedRoles = [] }) => {
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return null;
+  }
 
   // No authenticated user
   if (!user) {
@@ -18,12 +22,12 @@ const RoleRoute = ({ children, allowedRoles = [] }) => {
 
   // No role restriction
   if (allowedRoles.length === 0) {
-    return children;
+    return <Outlet />;
   }
 
   // User has permission
   if (allowedRoles.includes(user.role)) {
-    return children;
+    return <Outlet />;
   }
 
   // User is authenticated but not authorized

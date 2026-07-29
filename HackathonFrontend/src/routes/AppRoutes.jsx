@@ -11,6 +11,7 @@ import UnauthorizedPage from "../features/common/UnauthorizedPage";
 import UIShowcasePage from "../features/common/UIShowcasePage";
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
 import UserManagementPage from "../features/admin/pages/UserManagementPage";
+import RoleManagementPage from "../features/admin/pages/RoleManagementPage";
 import CreateHackathonPage from "../features/hackathon/pages/CreateHackathonPage";
 import EditHackathonPage from "../features/hackathon/pages/EditHackathonPage";
 import HackathonDetailsPage from "../features/hackathon/pages/HackathonDetailsPage";
@@ -34,6 +35,8 @@ import MyTeamPage from "../features/team/pages/MyTeamPage";
 import TeamDetailsPage from "../features/team/pages/TeamDetailsPage";
 import TeamPage from "../features/team/pages/TeamPage";
 import ProtectedRoute from "./ProtectedRoute";
+import RoleRoute from "./RoleRoute";
+import ROLES from "../constants/roles";
 
 const AppRoutes = () => (
   <BrowserRouter>
@@ -47,32 +50,58 @@ const AppRoutes = () => (
         <Route element={<Layout />}>
           <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
 
-          <Route path={ROUTES.HACKATHONS} element={<HackathonListPage />} />
-          <Route path={ROUTES.HACKATHON_DETAILS} element={<HackathonDetailsPage />} />
-          <Route path={ROUTES.CREATE_HACKATHON} element={<CreateHackathonPage />} />
-          <Route path={ROUTES.EDIT_HACKATHON} element={<EditHackathonPage />} />
-          <Route path={ROUTES.MY_HACKATHONS} element={<MyHackathonsPage />} />
+          <Route element={<RoleRoute allowedRoles={[ROLES.ADMIN, ROLES.ORGANIZER, ROLES.PARTICIPANT]} />}>
+            <Route path={ROUTES.HACKATHONS} element={<HackathonListPage />} />
+            <Route path={ROUTES.HACKATHON_DETAILS} element={<HackathonDetailsPage />} />
+          </Route>
+          <Route element={<RoleRoute allowedRoles={[ROLES.ADMIN, ROLES.ORGANIZER]} />}>
+            <Route path={ROUTES.CREATE_HACKATHON} element={<CreateHackathonPage />} />
+            <Route path={ROUTES.EDIT_HACKATHON} element={<EditHackathonPage />} />
+            <Route path={ROUTES.MY_HACKATHONS} element={<MyHackathonsPage />} />
+          </Route>
 
-          <Route path={ROUTES.TEAMS} element={<TeamPage />} />
-          <Route path={ROUTES.TEAM_DETAILS} element={<TeamDetailsPage />} />
-          <Route path={ROUTES.CREATE_TEAM} element={<CreateTeamPage />} />
-          <Route path={ROUTES.EDIT_TEAM} element={<EditTeamPage />} />
-          <Route path={ROUTES.JOIN_TEAM} element={<JoinTeamPage />} />
-          <Route path={ROUTES.MY_TEAM} element={<MyTeamPage />} />
+          <Route element={<RoleRoute allowedRoles={[ROLES.PARTICIPANT]} />}>
+            <Route path={ROUTES.TEAMS} element={<TeamPage />} />
+            <Route path={ROUTES.TEAM_DETAILS} element={<TeamDetailsPage />} />
+            <Route path={ROUTES.CREATE_TEAM} element={<CreateTeamPage />} />
+            <Route path={ROUTES.EDIT_TEAM} element={<EditTeamPage />} />
+            <Route path={ROUTES.JOIN_TEAM} element={<JoinTeamPage />} />
+            <Route path={ROUTES.MY_TEAM} element={<MyTeamPage />} />
+            <Route path={ROUTES.SUBMISSIONS} element={<SubmissionPage />} />
+            <Route path={ROUTES.SUBMISSION_DETAILS} element={<SubmissionDetailsPage />} />
+            <Route path={ROUTES.CREATE_SUBMISSION} element={<CreateSubmissionPage />} />
+            <Route path={ROUTES.EDIT_SUBMISSION} element={<EditSubmissionPage />} />
+            <Route path={ROUTES.MY_SUBMISSIONS} element={<MySubmissionsPage />} />
+          </Route>
 
-          <Route path={ROUTES.SUBMISSIONS} element={<SubmissionPage />} />
-          <Route path={ROUTES.SUBMISSION_DETAILS} element={<SubmissionDetailsPage />} />
-          <Route path={ROUTES.CREATE_SUBMISSION} element={<CreateSubmissionPage />} />
-          <Route path={ROUTES.EDIT_SUBMISSION} element={<EditSubmissionPage />} />
-          <Route path={ROUTES.MY_SUBMISSIONS} element={<MySubmissionsPage />} />
-
-          <Route path={ROUTES.JUDGE} element={<JudgeDashboardPage />} />
-          <Route path={ROUTES.JUDGE_ASSIGNMENTS} element={<JudgeAssignmentsPage />} />
-          <Route path={ROUTES.JUDGE_EVALUATIONS} element={<JudgeEvaluationsPage />} />
+          <Route element={<RoleRoute allowedRoles={[ROLES.JUDGE]} />}>
+            <Route path={ROUTES.JUDGE} element={<JudgeDashboardPage />} />
+            <Route path={ROUTES.JUDGE_ASSIGNMENTS} element={<JudgeAssignmentsPage />} />
+            <Route path={ROUTES.JUDGE_EVALUATIONS} element={<Navigate to={ROUTES.JUDGE_ASSIGNMENTS} replace />} />
+            <Route path={ROUTES.JUDGE_EVALUATION_DETAILS} element={<JudgeEvaluationsPage />} />
+          </Route>
           <Route path={ROUTES.LEADERBOARD} element={<LeaderboardPage />} />
           <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
           <Route path={ROUTES.EDIT_PROFILE} element={<EditProfilePage />} />
-          <Route path={ROUTES.ADMIN_USERS} element={<UserManagementPage />} />
+          <Route path={ROUTES.NOTIFICATIONS} element={<ComingSoonPage />} />
+          <Route path={ROUTES.CERTIFICATES} element={<ComingSoonPage />} />
+          <Route element={<RoleRoute allowedRoles={[ROLES.ADMIN]} />}>
+            <Route path={ROUTES.ADMIN_USERS} element={<UserManagementPage />} />
+            <Route path={ROUTES.ADMIN_ROLES} element={<RoleManagementPage />} />
+            <Route path={ROUTES.ADMIN_DASHBOARD} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ADMIN_HACKATHONS} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ADMIN_SUBMISSIONS} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ADMIN_EVALUATIONS} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ADMIN_ANALYTICS} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ADMIN_SETTINGS} element={<ComingSoonPage />} />
+          </Route>
+          <Route element={<RoleRoute allowedRoles={[ROLES.ADMIN, ROLES.ORGANIZER]} />}>
+            <Route path={ROUTES.ORGANIZER_DASHBOARD} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ORGANIZER_HACKATHONS} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ORGANIZER_TEAMS} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ORGANIZER_SUBMISSIONS} element={<ComingSoonPage />} />
+            <Route path={ROUTES.ORGANIZER_JUDGES} element={<ComingSoonPage />} />
+          </Route>
           <Route path={ROUTES.COMING_SOON} element={<ComingSoonPage />} />
           <Route path={ROUTES.UI_SHOWCASE} element={<UIShowcasePage />} />
         </Route>

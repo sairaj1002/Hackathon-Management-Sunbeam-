@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import useAuth from "../../../hooks/useAuth";
 
@@ -11,6 +11,7 @@ import ROUTES from "../../../constants/routes";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
 
   const [formData, setFormData] = useState({
@@ -50,6 +51,13 @@ const LoginForm = () => {
       const user = await login(payload.email, payload.password);
 
       console.log("Logged in user:", user);
+
+      const returnPath = location.state?.from?.pathname;
+
+      if (returnPath) {
+        navigate(returnPath, { replace: true });
+        return;
+      }
 
       // Navigate according to role
       switch (user.role) {

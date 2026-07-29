@@ -17,8 +17,8 @@ import ScoreForm from "../components/ScoreForm";
 
 import {
   assignedProjects,
-  projectDetails,
 } from "../../../mock/judges";
+import ROUTES from "../../../constants/routes";
 
 const STATUS_VARIANTS = {
   PENDING: "warning",
@@ -62,7 +62,7 @@ const JudgeEvaluationsPage = () => {
 
       toast.success("Evaluation submitted successfully.");
 
-      navigate("/judge/assigned-projects");
+      navigate(ROUTES.JUDGE_ASSIGNMENTS);
     } catch (error) {
       console.error(error);
 
@@ -141,7 +141,7 @@ const JudgeEvaluationsPage = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <Github size={18} />
+              <Code2 size={18} />
               <a
                 href={project.githubUrl}
                 target="_blank"

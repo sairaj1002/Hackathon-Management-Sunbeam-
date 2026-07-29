@@ -120,6 +120,8 @@ const ROUTES = {
 
   ADMIN_USERS: "/admin/users",
 
+  ADMIN_ROLES: "/admin/roles",
+
   ADMIN_HACKATHONS: "/admin/hackathons",
 
   ADMIN_SUBMISSIONS: "/admin/submissions",

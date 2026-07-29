@@ -11,6 +11,30 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const getUsers = () => {
+    const storedUsers = localStorage.getItem(STORAGE_KEYS.MOCK_USERS);
+
+    if (!storedUsers) return mockUsers;
+
+    try {
+      return JSON.parse(storedUsers);
+    } catch {
+      localStorage.removeItem(STORAGE_KEYS.MOCK_USERS);
+      return mockUsers;
+    }
+  };
+
+  const saveSession = (authenticatedUser) => {
+    const token = "mock-jwt-token";
+
+    setUser(authenticatedUser);
+    setToken(token);
+    localStorage.setItem(
+      STORAGE_KEYS.AUTH,
+      JSON.stringify({ user: authenticatedUser, token })
+    );
+  };
+
   /*
    * Restore Session
    */
@@ -53,7 +77,7 @@ export const AuthProvider = ({ children }) => {
    * Mock Login
    */
     const login = async (email, password) => {
-      const user = mockUsers.find(
+    const user = getUsers().find(
         (u) => u.email === email && u.password === password
       );
 
@@ -61,22 +85,33 @@ export const AuthProvider = ({ children }) => {
         throw new Error("Invalid email or password");
       }
 
-      // Fake JWT
-      const token = "mock-jwt-token";
-
-      setUser(user);
-      setToken(token);
-
-      localStorage.setItem(
-        STORAGE_KEYS.AUTH,
-        JSON.stringify({
-          user,
-          token,
-        })
-      );
+      saveSession(user);
 
       return user;
     };
+
+  const register = async ({ fullName, email, password }) => {
+    const users = getUsers();
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if (users.some((existingUser) => existingUser.email === normalizedEmail)) {
+      throw new Error("An account already exists for this email address.");
+    }
+
+    const newUser = {
+      id: crypto.randomUUID(),
+      fullName: fullName.trim(),
+      email: normalizedEmail,
+      password,
+      role: "PARTICIPANT",
+      avatar: "",
+      isActive: true,
+    };
+
+    localStorage.setItem(STORAGE_KEYS.MOCK_USERS, JSON.stringify([...users, newUser]));
+    saveSession(newUser);
+    return newUser;
+  };
 
   /*
    * Logout
@@ -98,6 +133,7 @@ export const AuthProvider = ({ children }) => {
       isLoading,
       isAuthenticated: !!token,
       login,
+      register,
       logout,
     }),
     [user, token, isLoading]

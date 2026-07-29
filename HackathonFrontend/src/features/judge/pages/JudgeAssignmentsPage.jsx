@@ -9,8 +9,8 @@ import AssignedProjectCard from "../components/AssignedProjectCard";
 
 import {
   assignedProjects,
-  projectDetails,
 } from "../../../mock/judges";
+import ROUTES from "../../../constants/routes";
 
 const JudgeAssignmentsPage = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const JudgeAssignmentsPage = () => {
   }, [search]);
 
   const handleEvaluate = (project) => {
-    navigate(`/judge/projects/${project.id}/score`);
+    navigate(ROUTES.JUDGE_EVALUATION_DETAILS.replace(":id", project.id));
   };
 
   return (

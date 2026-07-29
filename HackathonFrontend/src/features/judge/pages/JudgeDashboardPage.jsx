@@ -13,6 +13,7 @@ import JudgeActivityFeed from "../components/JudgeActivityFeed";
 
 import { useNavigate } from "react-router-dom";
 import { judgeDashboardData , judgeActivities} from "../../../mock/judges";
+import ROUTES from "../../../constants/routes";
 
 
 const statIcons = {
@@ -32,7 +33,7 @@ const JudgeDashboardPage = () => {
   const navigate = useNavigate();
 
   const handleEvaluate = (project) => {
-      navigate(`/judge/projects/${project.id}/score`);
+      navigate(ROUTES.JUDGE_EVALUATION_DETAILS.replace(":id", project.id));
   };
 
   return (
