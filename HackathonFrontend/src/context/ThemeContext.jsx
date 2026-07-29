@@ -1,60 +1,63 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import STORAGE_KEYS from "../constants/storage";
 import THEME from "../constants/theme";
 
-export const ThemeContext = createContext();
+export const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
   const getInitialTheme = () => {
     const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
 
-    if (savedTheme) {
+    if (
+      savedTheme === THEME.LIGHT ||
+      savedTheme === THEME.DARK
+    ) {
       return savedTheme;
     }
 
-    return THEME.SYSTEM;
+    return THEME.LIGHT;
   };
 
   const [theme, setTheme] = useState(getInitialTheme);
 
-  /*
-   * Apply Theme
-   */
   useEffect(() => {
-    let activeTheme = theme;
+    const isDarkTheme = theme === THEME.DARK;
 
-    if (theme === THEME.SYSTEM) {
-      activeTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? THEME.DARK
-        : THEME.LIGHT;
-    }
-
+    // Adds/removes the "dark" class from the <html> element
     document.documentElement.classList.toggle(
       "dark",
-      activeTheme === THEME.DARK
+      isDarkTheme
     );
 
+    // Helps browser controls follow the selected theme
+    document.documentElement.style.colorScheme = isDarkTheme
+      ? "dark"
+      : "light";
+
+    // Saves selected theme after refresh
     localStorage.setItem(STORAGE_KEYS.THEME, theme);
   }, [theme]);
 
-  /*
-   * Toggle Theme
-   */
   const toggleTheme = () => {
     setTheme((currentTheme) =>
-      currentTheme === THEME.DARK ? THEME.LIGHT : THEME.DARK
+      currentTheme === THEME.DARK
+        ? THEME.LIGHT
+        : THEME.DARK
     );
   };
 
-  /*
-   * Context Value
-   */
   const value = useMemo(
     () => ({
       theme,
       setTheme,
       toggleTheme,
+      isDark: theme === THEME.DARK,
     }),
     [theme]
   );
