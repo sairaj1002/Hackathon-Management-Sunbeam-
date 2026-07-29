@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
 
       if (storedAuth) {
         const { user, token } = JSON.parse(storedAuth);
-
         setUser(user);
         setToken(token);
       }
