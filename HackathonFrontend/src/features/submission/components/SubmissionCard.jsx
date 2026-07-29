@@ -1,5 +1,6 @@
 import {
   CalendarDays,
+  Code2,
   ExternalLink,
   Pencil,
 } from "lucide-react";
@@ -25,6 +26,7 @@ const STATUS_LABELS = {
 const SubmissionCard = ({
   submission,
   onEdit,
+  onView,
 }) => {
   const {
     projectTitle,
@@ -73,7 +75,7 @@ const SubmissionCard = ({
               rel="noreferrer"
               className="flex items-center gap-2 text-blue-600 hover:underline"
             >
-              <Github size={16} />
+              <Code2 size={16} />
               GitHub
             </a>
           )}
@@ -91,7 +93,13 @@ const SubmissionCard = ({
           )}
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-3">
+          <Button
+            variant="outline"
+            onClick={() => onView?.(submission)}
+          >
+            View Details
+          </Button>
           <Button
             onClick={() => onEdit?.(submission)}
           >

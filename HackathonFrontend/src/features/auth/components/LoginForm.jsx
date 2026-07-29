@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import useAuth from "../../../hooks/useAuth";
 
@@ -11,6 +11,7 @@ import ROUTES from "../../../constants/routes";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
 
   const [formData, setFormData] = useState({
@@ -51,10 +52,17 @@ const LoginForm = () => {
 
       console.log("Logged in user:", user);
 
+      const returnPath = location.state?.from?.pathname;
+
+      if (returnPath) {
+        navigate(returnPath, { replace: true });
+        return;
+      }
+
       // Navigate according to role
       switch (user.role) {
         case "ADMIN":
-          navigate(ROUTES.ADMIN_DASHBOARD || ROUTES.DASHBOARD);
+          navigate(ROUTES.DASHBOARD);
           break;
 
         case "ORGANIZER":

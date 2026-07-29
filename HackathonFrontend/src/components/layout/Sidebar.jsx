@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 
 import routeConfig from "../../routes/routeConfig";
+import useAuth from "../../hooks/useAuth";
 
 const Sidebar = ({
   sidebarOpen,
@@ -13,6 +14,8 @@ const Sidebar = ({
   collapsed,
   setCollapsed,
 }) => {
+  const { user } = useAuth();
+
   return (
     <>
       {/* Mobile Overlay */}
@@ -75,7 +78,11 @@ const Sidebar = ({
         {/* Navigation */}
         <nav className="space-y-2 px-3">
           {routeConfig
-            .filter((route) => route.showInSidebar)
+            .filter(
+              (route) =>
+                route.showInSidebar &&
+                (!route.roles?.length || route.roles.includes(user?.role))
+            )
             .map((route) => {
               const Icon = route.icon;
 

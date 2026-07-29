@@ -1,7 +1,6 @@
 import { Trophy } from "lucide-react";
 
 import LoginForm from "../components/LoginForm";
-import { currentUser } from "../../../mock/auth";
 const LoginPage = () => {
   return (
     <div className="min-h-screen bg-zinc-100 dark:bg-zinc-950 transition-colors duration-300">

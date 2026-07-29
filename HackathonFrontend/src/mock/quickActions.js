@@ -7,6 +7,7 @@ import {
   User,
   Users,
 } from "lucide-react";
+import ROLES, { ALL_ROLES } from "../constants/roles";
 
 export const quickActions = [
   {
@@ -15,6 +16,7 @@ export const quickActions = [
     description: "Explore available hackathons.",
     icon: Trophy,
     path: "/hackathons",
+    roles: [ROLES.ADMIN, ROLES.ORGANIZER, ROLES.PARTICIPANT],
   },
   {
     id: 2,
@@ -22,6 +24,7 @@ export const quickActions = [
     description: "View and manage your team.",
     icon: Users,
     path: "/teams/my",
+    roles: [ROLES.PARTICIPANT],
   },
   {
     id: 3,
@@ -29,6 +32,7 @@ export const quickActions = [
     description: "Submit your hackathon project.",
     icon: FolderGit2,
     path: "/submissions/create",
+    roles: [ROLES.PARTICIPANT],
   },
   {
     id: 4,
@@ -36,6 +40,7 @@ export const quickActions = [
     description: "Update your profile information.",
     icon: User,
     path: "/profile",
+    roles: ALL_ROLES,
   },
   {
     id: 5,
@@ -43,6 +48,7 @@ export const quickActions = [
     description: "Check current rankings.",
     icon: Award,
     path: "/leaderboard",
+    roles: ALL_ROLES,
   },
   {
     id: 6,
@@ -50,5 +56,6 @@ export const quickActions = [
     description: "Create a new team for a hackathon.",
     icon: Plus,
     path: "/teams/create",
+    roles: [ROLES.PARTICIPANT],
   },
 ];

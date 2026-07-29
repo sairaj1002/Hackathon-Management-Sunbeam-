@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 import Button from "../../../components/ui/Button";
 import Card from "../../../components/ui/Card";
 import Input from "../../../components/ui/Input";
 
 import ROUTES from "../../../constants/routes";
-
-import { currentUser } from "../../../mock/auth";
 
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("");
@@ -34,9 +33,7 @@ const ForgotPasswordForm = () => {
 
       console.log(payload);
 
-      // TODO:
-      // Show success toast
-      // "Password reset link sent successfully."
+      toast.success("If an account exists, a reset link has been sent.");
     } catch (error) {
       console.error("Forgot password failed:", error);
 

@@ -14,6 +14,7 @@ const STORAGE_KEYS = {
   // =========================
 
   USER: "user",
+  MOCK_USERS: "mockUsers",
 
   // =========================
   // Preferences

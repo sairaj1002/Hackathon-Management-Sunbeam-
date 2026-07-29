@@ -7,6 +7,7 @@ import PageContainer from "./PageContainer";
 
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -18,9 +19,11 @@ const Layout = () => {
       <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
       />
 
-      <PageContainer sidebarOpen={sidebarOpen}>
+      <PageContainer collapsed={collapsed}>
         <Outlet />
       </PageContainer>
     </div>

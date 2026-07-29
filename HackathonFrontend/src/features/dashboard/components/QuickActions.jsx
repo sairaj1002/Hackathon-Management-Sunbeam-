@@ -5,9 +5,14 @@ import ActionCard from "./ActionCard";
 import DashboardSection from "./DashboardSection";
 
 import { quickActions } from "../../../mock/quickActions";
+import useAuth from "../../../hooks/useAuth";
 
 const QuickActions = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const availableActions = quickActions.filter((action) =>
+    !action.roles?.length || action.roles.includes(user?.role)
+  );
 
   const handleNavigation = useCallback(
     (path) => {
@@ -16,7 +21,7 @@ const QuickActions = () => {
     [navigate]
   );
 
-  if (!quickActions.length) {
+  if (!availableActions.length) {
     return (
       <DashboardSection title="Quick Actions">
         <div className="rounded-xl border border-dashed border-zinc-300 p-6 text-center dark:border-zinc-700">
@@ -31,7 +36,7 @@ const QuickActions = () => {
   return (
     <DashboardSection title="Quick Actions">
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {quickActions.map((action) => (
+        {availableActions.map((action) => (
           <ActionCard
             key={action.id}
             title={action.title}

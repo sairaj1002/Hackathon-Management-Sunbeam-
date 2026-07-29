@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 import SubmissionForm from "../components/SubmissionForm";
 
 const CreateSubmissionPage = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (submission) => {
@@ -17,6 +19,7 @@ const CreateSubmissionPage = () => {
       console.log(submission);
 
       toast.success("Submission created successfully.");
+      navigate("/submissions/my");
     } catch (error) {
       console.error(error);
 

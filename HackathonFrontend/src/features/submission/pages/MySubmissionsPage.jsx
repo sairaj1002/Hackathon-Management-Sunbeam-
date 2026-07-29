@@ -29,6 +29,10 @@ const MySubmissionsPage = () => {
     navigate(`/submissions/${submission.id}/edit`);
   };
 
+  const handleView = (submission) => {
+    navigate(`/submissions/${submission.id}`);
+  };
+
   return (
     <div className="space-y-8">
 
@@ -65,6 +69,7 @@ const MySubmissionsPage = () => {
                 key={submission.id}
                 submission={submission}
                 onEdit={handleEdit}
+                onView={handleView}
               />
             )
           )}

@@ -1,7 +1,6 @@
 import { Trophy } from "lucide-react";
 
 import RegisterForm from "../components/RegisterForm";
-import { currentUser } from "../../../mock/auth";
 const RegisterPage = () => {
   return (
     <div className="min-h-screen bg-zinc-100 dark:bg-zinc-950 transition-colors duration-300">
