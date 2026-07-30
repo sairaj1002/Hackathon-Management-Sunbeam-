@@ -1,1 +1,0 @@
-export const settings={registrationOpen:true,maintenanceMode:false,allowTeamCreation:true,maxTeamSize:5};

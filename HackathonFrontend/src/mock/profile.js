@@ -1,1 +1,0 @@
-export const profile={id:1,fullName:"John Doe",username:"johndoe",email:"john@example.com",phone:"+91 9876543210",location:"Pune, Maharashtra",organization:"CDAC Pune",role:"Participant",bio:"Passionate Full Stack Developer."};

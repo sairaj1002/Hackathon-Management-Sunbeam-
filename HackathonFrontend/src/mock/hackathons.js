@@ -1,1 +1,0 @@
-export const hackathons=[{id:1,title:"AI Innovation Challenge",organizer:"CDAC Pune",status:"ONGOING",mode:"ONLINE",teamSize:4,prize:"₹1,00,000"},{id:2,title:"Hack Horizon",organizer:"Google",status:"UPCOMING",mode:"OFFLINE",teamSize:5,prize:"₹2,50,000"}];

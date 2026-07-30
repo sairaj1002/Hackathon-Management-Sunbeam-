@@ -1,1 +1,0 @@
-export const managedSubmissions=[{id:1,projectTitle:"Smart Health",teamName:"Code Warriors",status:"UNDER_REVIEW"}];

@@ -1,1 +1,0 @@
-export const analytics={totalUsers:540,totalHackathons:28,totalTeams:96,totalSubmissions:88,completionRate:91};

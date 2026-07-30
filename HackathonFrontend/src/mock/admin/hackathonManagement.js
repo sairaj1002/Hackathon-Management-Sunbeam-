@@ -1,1 +1,0 @@
-export const managedHackathons=[{id:1,title:"AI Innovation Challenge",participants:120,teams:32,status:"ONGOING"}];
